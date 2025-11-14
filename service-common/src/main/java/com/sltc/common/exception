@@ -1,0 +1,55 @@
+mi-proyecto/
+│
+├── microservicio-1/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio1/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── Microservicio1Application.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio1/
+│   │                       └── Microservicio1ApplicationTests.java
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── microservicio-2/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio2/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── Microservicio2Application.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio2/
+│   │                       └── Microservicio2ApplicationTests.java
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── docker-compose.yml
+├── README.md
+└── .gitignore

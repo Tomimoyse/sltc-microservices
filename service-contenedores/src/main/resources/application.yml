@@ -1,0 +1,55 @@
+mi-proyecto/
+│
+├── microservicio-1/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio1/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── config/
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio1/
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── microservicio-2/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio2/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── config/
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio2/
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── docker-compose.yml
+├── keycloak/
+│   ├── Dockerfile
+│   └── realm.json
+└── README.md

@@ -1,0 +1,54 @@
+mi-proyecto/
+│
+├── microservicio-1/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio1/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── model/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── service/
+│   │   │   │               └── Microservicio1Application.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio1/
+│   │                       └── Microservicio1ApplicationTests.java
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── microservicio-2/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio2/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── model/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── service/
+│   │   │   │               └── Microservicio2Application.java
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio2/
+│   │                       └── Microservicio2ApplicationTests.java
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── docker-compose.yml
+└── README.md

@@ -1,0 +1,75 @@
+mi-proyecto/
+│
+├── microservicio-1/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio1/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── config/
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio1/
+│   │                       └── Microservicio1ApplicationTests.java
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── microservicio-2/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── microservicio2/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── service/
+│   │   │   │               ├── repository/
+│   │   │   │               ├── model/
+│   │   │   │               └── config/
+│   │   │   └── resources/
+│   │   │       ├── application.yml
+│   │   │       └── db/
+│   │   │           └── schema.sql
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── microservicio2/
+│   │                       └── Microservicio2ApplicationTests.java
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── gateway/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── ejemplo/
+│   │   │   │           └── gateway/
+│   │   │   │               ├── controller/
+│   │   │   │               ├── config/
+│   │   │   │               └── filter/
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/
+│   │               └── ejemplo/
+│   │                   └── gateway/
+│   │                       └── GatewayApplicationTests.java
+│   ├── pom.xml
+│   └── Dockerfile
+│
+├── docker-compose.yml
+└── README.md
