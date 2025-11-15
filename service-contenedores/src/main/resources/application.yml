@@ -1,55 +1,39 @@
-mi-proyecto/
-│
-├── microservicio-1/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio1/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               ├── model/
-│   │   │   │               └── config/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio1/
-│   ├── Dockerfile
-│   └── pom.xml
-│
-├── microservicio-2/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio2/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               ├── model/
-│   │   │   │               └── config/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio2/
-│   ├── Dockerfile
-│   └── pom.xml
-│
-├── docker-compose.yml
-├── keycloak/
-│   ├── Dockerfile
-│   └── realm.json
-└── README.md
+server:
+  port: 8082
+
+spring:
+  application:
+    name: service-contenedores
+  datasource:
+    url: jdbc:postgresql://localhost:5432/contenedores_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    com.sltc: DEBUG

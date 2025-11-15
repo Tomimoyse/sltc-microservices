@@ -45,4 +45,18 @@ public class SolicitudController {
         int deleted = repo.delete(id);
         return deleted > 0 ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+    
+    @GetMapping("{id}/estado")
+    public ResponseEntity<java.util.Map<String, Object>> getEstado(@PathVariable Long id) {
+        return repo.findById(id)
+            .map(s -> {
+                java.util.Map<String, Object> estado = new java.util.HashMap<>();
+                estado.put("id", s.getId());
+                estado.put("estado", s.getEstado());
+                estado.put("tiempoEstimado", s.getTiempoEstimado());
+                estado.put("tiempoReal", s.getTiempoReal());
+                return ResponseEntity.ok(estado);
+            })
+            .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
