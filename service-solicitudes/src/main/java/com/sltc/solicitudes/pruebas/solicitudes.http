@@ -1,0 +1,13 @@
+# @env=local
+
+POST http://localhost:8081/api/solicitudes
+Authorization: Basic ZGV2dXNlcjpkZXZwYXNz
+Content-Type: application/json
+
+{
+  "estado": "CREADA",
+  "costoEstimatado": 100.0,
+  "tiempoEstimado": 24,
+  "idCliente": 1,
+  "idContenedor": 2
+}

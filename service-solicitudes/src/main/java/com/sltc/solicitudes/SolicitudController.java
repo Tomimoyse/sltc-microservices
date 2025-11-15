@@ -1,28 +1,48 @@
-package com.sltc.solicitudes.controller;
+package com.sltc.solicitudes;
 
-import com.sltc.solicitudes.model.Solicitud;
-import com.sltc.solicitudes.service.SolicitudService;
+import com.sltc.solicitudes.Solicitud;
+import com.sltc.solicitudes.SolicitudRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/solicitudes")
 public class SolicitudController {
-    private final SolicitudService service;
+    private final SolicitudRepository repo;
 
-    public SolicitudController(SolicitudService service) { this.service = service; }
+    public SolicitudController(SolicitudRepository repo) {
+        this.repo = repo;
+    }
 
     @GetMapping
-    public List<Solicitud> all() { return service.findAll(); }
+    public List<Solicitud> list() { return repo.findAll(); }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Solicitud> get(@PathVariable Long id) {
-        var s = service.findById(id);
-        return s == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(s);
+        return repo.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Solicitud create(@RequestBody Solicitud s) { return service.save(s); }
+    public ResponseEntity<Void> create(@RequestBody Solicitud s, UriComponentsBuilder ucb) {
+        Solicitud created = repo.save(s);                      // <-- usar el objeto devuelto
+        URI location = ucb.path("/api/solicitudes/{id}").buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Solicitud s) {
+        s.setId(id);
+        int updated = repo.update(s);
+        return updated > 0 ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        int deleted = repo.delete(id);
+        return deleted > 0 ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
 }

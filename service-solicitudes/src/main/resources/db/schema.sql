@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS solicitud (
+CREATE TABLE IF NOT EXISTS solicitudes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   costo_estimatado REAL,
   costo_final REAL,

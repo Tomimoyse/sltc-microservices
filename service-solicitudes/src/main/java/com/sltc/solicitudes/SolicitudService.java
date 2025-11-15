@@ -1,7 +1,7 @@
-package com.sltc.solicitudes.service;
+package com.sltc.solicitudes;
 
-import com.sltc.solicitudes.model.Solicitud;
-import com.sltc.solicitudes.repository.SolicitudRepository;
+import com.sltc.solicitudes.Solicitud;
+import com.sltc.solicitudes.SolicitudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

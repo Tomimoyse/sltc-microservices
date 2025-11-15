@@ -1,49 +1,23 @@
-mi-proyecto/
-│
-├── microservicio-1/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio1/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio1/
-│   └── pom.xml
-│
-├── microservicio-2/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio2/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio2/
-│   └── pom.xml
-│
-├── docker-compose.yml
-├── README.md
-└── .gitignore
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.sltc</groupId>
+    <artifactId>sltc-microservices</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>service-depositos</artifactId>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+</project>
