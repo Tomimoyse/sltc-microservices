@@ -1,53 +1,113 @@
-mi-proyecto/
-│
-├── microservicio-1/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio1/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio1/
-│   │                       └── Microservicio1ApplicationTests.java
-│   ├── pom.xml
-│   └── Dockerfile
-│
-├── microservicio-2/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio2/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio2/
-│   │                       └── Microservicio2ApplicationTests.java
-│   ├── pom.xml
-│   └── Dockerfile
-│
-├── docker-compose.yml
-├── README.md
-└── .gitignore
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            exposedHeaders:
+              - Authorization
+            maxAge: 3600
+      routes:
+        # Microservicio Contenedores
+        - id: contenedores-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/contenedores/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Depósitos
+        - id: depositos-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/depositos/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Tarifas
+        - id: tarifas-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/tarifas/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Camiones
+        - id: camiones-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/camiones/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Tramos
+        - id: tramos-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/tramos/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Rutas
+        - id: rutas-service
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/rutas/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+        
+        # Microservicio Solicitudes
+        - id: solicitudes-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/solicitudes/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
