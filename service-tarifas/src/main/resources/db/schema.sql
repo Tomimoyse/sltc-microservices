@@ -1,53 +1,23 @@
-mi-proyecto/
-│
-├── microservicio-1/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio1/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio1/
-│   ├── pom.xml
-│   └── Dockerfile
-│
-├── microservicio-2/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── ejemplo/
-│   │   │   │           └── microservicio2/
-│   │   │   │               ├── controller/
-│   │   │   │               ├── service/
-│   │   │   │               ├── repository/
-│   │   │   │               └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── db/
-│   │   │           └── schema.sql
-│   │   └── test/
-│   │       └── java/
-│   │           └── com/
-│   │               └── ejemplo/
-│   │                   └── microservicio2/
-│   ├── pom.xml
-│   └── Dockerfile
-│
-├── docker-compose.yml
-├── keycloak/
-│   ├── Dockerfile
-│   └── realm.json
-└── README.md
+-- ================================================================
+-- Database Schema: DataBase_Tarifas
+-- Description: Tarifa table for the Tarifas microservice
+-- ================================================================
+
+-- Drop table if it exists (for clean re-initialization)
+DROP TABLE IF EXISTS tarifa;
+
+-- ================================================================
+-- Table: TARIFA
+-- Description: Stores pricing tariffs for different truck types
+-- ================================================================
+CREATE TABLE IF NOT EXISTS tarifa (
+    id_tarifa INTEGER PRIMARY KEY AUTOINCREMENT,
+    tipo_camion VARCHAR(50) NOT NULL,
+    costo_km DECIMAL(10, 2) NOT NULL,
+    valor_combustible DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Index on tipo_camion for faster lookups
+CREATE INDEX IF NOT EXISTS idx_tarifa_tipo ON tarifa(tipo_camion);
