@@ -49,4 +49,20 @@ public class TramoController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @PostMapping("/{id}/inicio")
+    @Operation(summary = "Iniciar un tramo")
+    public ResponseEntity<Tramo> iniciarTramo(@PathVariable Long id) {
+        Tramo tramo = service.getById(id);
+        tramo.setEstado("EN_CURSO");
+        return ResponseEntity.ok(service.update(id, tramo));
+    }
+    
+    @PostMapping("/{id}/fin")
+    @Operation(summary = "Finalizar un tramo")
+    public ResponseEntity<Tramo> finalizarTramo(@PathVariable Long id) {
+        Tramo tramo = service.getById(id);
+        tramo.setEstado("COMPLETADO");
+        return ResponseEntity.ok(service.update(id, tramo));
+    }
 }

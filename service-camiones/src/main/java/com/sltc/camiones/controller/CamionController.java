@@ -49,4 +49,21 @@ public class CamionController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @GetMapping("/dominio/{dominio}")
+    @Operation(summary = "Obtener camión por dominio")
+    public ResponseEntity<Camion> getByDominio(@PathVariable String dominio) {
+        return ResponseEntity.ok(service.getAll().stream()
+            .filter(c -> c.getDominio().equals(dominio))
+            .findFirst()
+            .orElseThrow(() -> new com.sltc.camiones.exception.ResourceNotFoundException("Camión no encontrado con dominio: " + dominio)));
+    }
+    
+    @GetMapping("/disponibles")
+    @Operation(summary = "Listar camiones disponibles")
+    public ResponseEntity<java.util.List<Camion>> getDisponibles() {
+        return ResponseEntity.ok(service.getAll().stream()
+            .filter(Camion::getDisponible)
+            .collect(java.util.stream.Collectors.toList()));
+    }
 }
